@@ -1,0 +1,23 @@
+page-bitcoin {
+  ion-grid {
+
+    ion-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    margin-top: 20vh;
+
+    ion-img {
+      height: 100px;
+      width: 100px;
+      background: transparent;
+    }
+
+    h1 {
+      color: rgb(207, 135, 0);
+    }
+  }
+  
+
+}
