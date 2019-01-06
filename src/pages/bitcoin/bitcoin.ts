@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, SystemJsNgModuleLoader } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+import { BitcoinProvider } from '../../providers/bitcoin/bitcoin';
+import { Observable } from 'rxjs/Observable';
+import { Bitcoin } from '../../models/bitcoin.model';
 
-/**
- * Generated class for the BitcoinPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +12,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BitcoinPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  currency: string = "JMD";
+  bitcoin$: Observable<Bitcoin>; //$ denotes an observable
+
+  constructor(private bitcoinProvider: BitcoinProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BitcoinPage');
+  ionViewWillLoad() {
+    //Get currency price
+    this.getBitcoinPrice();
+  }
+  
+  getBitcoinPrice() {
+   this.bitcoin$ = this.bitcoinProvider.getBitcoinPrice(this.currency);
   }
 
 }
